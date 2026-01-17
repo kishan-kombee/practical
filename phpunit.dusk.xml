@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+    <!-- Register the export extension -->
+    <extensions>
+        <bootstrap class="Tests\Extensions\DuskExportExtension"/>
+    </extensions>
+
+    <testsuites>
+        <testsuite name="Browser">
+            <file>tests/Browser/Auth/ForgotPasswordTest.php</file>
+            <file>tests/Browser/Auth/LoginTest.php</file>
+            <file>tests/Browser/Role/RoleTestCase.php</file>
+<file>tests/Browser/User/UserTestCase.php</file>
+<file>tests/Browser/Category/CategoryTestCase.php</file>
+<file>tests/Browser/SubCategory/SubCategoryTestCase.php</file>
+<file>tests/Browser/Product/ProductTestCase.php</file>
+<file>tests/Browser/Appointment/AppointmentTestCase.php</file>
+<file>tests/Browser/SmsTemplate/SmsTemplateTestCase.php</file>
+            <file>tests/Browser/Auth/LogoutTest.php</file>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>app</directory>
+        </include>
+    </source>
+    <php>
+        <env name="APP_ENV" value="local"/>
+        <env name="APP_URL" value="http://127.0.0.1:8000"/>
+    </php>
+</phpunit>

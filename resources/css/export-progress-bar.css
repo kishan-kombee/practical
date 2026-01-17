@@ -1,0 +1,102 @@
+/* Export Progress Bar Animations and Styles */
+
+/* Shimmer animation for progress bar */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.animate-shimmer {
+    animation: shimmer 2s infinite;
+}
+
+/* Enhanced pulse animation for status indicator */
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+/* Smooth progress bar animation */
+@keyframes progress-glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    }
+}
+
+/* Smooth fade out animation for progress bar */
+@keyframes fade-out-up {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
+/* Ripple effect for close button */
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* SweetAlert2 Dialog Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}

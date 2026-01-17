@@ -1,0 +1,64 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "fully_qualified_strict_types": true,
+        "no_unused_imports": true,
+        "ordered_imports": {
+            "sort_algorithm": "alpha"
+        },
+        "single_line_after_imports": true,
+        "array_syntax": {
+            "syntax": "short"
+        },
+        "cast_spaces": {
+            "space": "single"
+        },
+        "binary_operator_spaces": {
+            "default": "single_space"
+        },
+        "concat_space": {
+            "spacing": "one"
+        },
+        "method_argument_space": {
+            "on_multiline": "ensure_fully_multiline"
+        },
+        "return_type_declaration": {
+            "space_before": "none"
+        },
+        "braces": true,
+        "new_with_parentheses": true,
+        "single_quote": true,
+        "not_operator_with_successor_space": true,
+        "line_ending": false,
+        "no_trailing_whitespace": true,
+        "single_blank_line_at_eof": true,
+        "blank_line_after_namespace": true,
+        "blank_line_after_opening_tag": true,
+        "no_extra_blank_lines": true,
+        "space_after_semicolon": true,
+        "trim_array_spaces": true,
+        "unary_operator_spaces": true,
+        "class_attributes_separation": {
+            "elements": {
+                "method": "one",
+                "property": "one",
+                "const": "none",
+                "trait_import": "none",
+                "case": "none"
+            }
+        },
+        "single_class_element_per_statement": true,
+        "single_trait_insert_per_statement": true,
+        "phpdoc_align": {
+            "align": "left"
+        },
+        "phpdoc_scalar": true,
+        "phpdoc_trim": true,
+        "phpdoc_no_empty_return": true
+    },
+    "exclude": [
+        "vendor",
+        "storage",
+        "bootstrap/cache"
+    ]
+}

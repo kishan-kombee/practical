@@ -1,0 +1,176 @@
+/* Dropzone Base */
+.dropzone {
+    border: none !important;
+    background: transparent !important;
+    min-height: 160px !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+
+.dropzone .dz-message {
+    margin: 0 !important;
+    text-align: center;
+    padding: 0.75rem;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Processing Overlay - Positioned within dropzone */
+.dropzone .dz-preview {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    z-index: 999 !important;
+    display: block !important;
+    margin: 0 !important;
+}
+
+/* Processing Box - Absolute Centering within dropzone */
+.dropzone .dz-preview .dz-processing-content {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background: white !important;
+    border-radius: 8px !important;
+    padding: 25px !important;
+    width: 300px !important;
+    text-align: center !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    z-index: 1000 !important;
+    margin: 0 !important;
+    border: 1px solid #e0e0e0 !important;
+}
+
+/* File Name */
+.dropzone .dz-preview .dz-processing-content .dz-filename {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
+
+/* File Size */
+.dropzone .dz-preview .dz-processing-content .dz-size {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Progress Text */
+.dropzone .dz-preview .dz-processing-content .dz-progress-text {
+    font-size: 12px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Spinner */
+.dropzone .dz-preview .dz-processing-content .dz-processing-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #eee;
+    border-top: 2px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error */
+.dropzone .dz-preview .dz-processing-content .dz-error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Close Button */
+.dropzone .dz-preview .dz-processing-content .dz-remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #999;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.dropzone .dz-preview .dz-processing-content .dz-remove:hover {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* File details section */
+.dropzone .dz-preview .dz-processing-content .dz-details {
+    margin-bottom: 10px;
+}
+
+/* Ensure filename and size display properly */
+.dropzone .dz-preview .dz-processing-content .dz-filename span {
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Override Dropzone's default display/visibility */
+.dropzone .dz-preview.dz-file-preview {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Hide default Dropzone elements we don't need */
+.dropzone .dz-preview .dz-image,
+.dropzone .dz-preview .dz-image-preview {
+    display: none !important;
+}
+
+/* Hide default Dropzone elements and text */
+.dropzone .dz-preview .dz-remove-ajax,
+.dropzone .dz-preview .dz-remove-link,
+.dropzone .dz-preview span[data-dz-name]:not(.dz-processing-content span) {
+    display: none !important;
+}
+
+/* Hide any default "Cancel" or text that Dropzone adds */
+.dropzone .dz-preview::before,
+.dropzone .dz-preview::after,
+.dropzone .dz-details + a,
+.dropzone .dz-details + span {
+    display: none !important;
+}
+
+/* Ensure only × symbol is visible, hide any extra text */
+.dropzone .dz-preview a.dz-remove:not(.dz-processing-content .dz-remove),
+.dropzone .dz-preview [data-dz-remove]:not(.dz-processing-content [data-dz-remove]) {
+    display: none !important;
+}
+

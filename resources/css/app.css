@@ -1,0 +1,170 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+@import '../../vendor/power-components/livewire-powergrid/resources/css/tailwind4.css';
+@import "flatpickr/dist/flatpickr.min.css";
+@import 'sweetalert2/dist/sweetalert2.min.css';
+@import '../css/dropzone.css';
+@import "quill/dist/quill.snow.css";
+@import "./quill-editor.css";
+/* Import PowerGrid responsive styles */
+@import './powergrid-responsive.css';
+
+/* Import Export Progress Bar styles */
+@import './export-progress-bar.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+@source '../../vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php';
+@source '../../vendor/power-components/livewire-powergrid/resources/views/**/*.php';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Poppins', sans-serif;
+
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
+
+    --color-accent: var(--color-neutral-800);
+    --color-accent-content: var(--color-neutral-800);
+    --color-accent-foreground: var(--color-white);
+
+}
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-white);
+        --color-accent-content: var(--color-white);
+        --color-accent-foreground: var(--color-neutral-800);
+    }
+}
+
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+/* \[:where(&)\]:size-4 {
+    @apply size-4;
+} */
+
+/* Custom styling to remove red borders from form fields with validation errors */
+/* Override Flux UI error styling while keeping error messages */
+[data-flux-field] [data-flux-control]:invalid,
+[data-flux-field] [data-flux-control][aria-invalid="true"],
+[data-flux-field] [data-flux-control].error,
+[data-flux-field] [data-flux-control][data-error],
+
+/* Remove red border from input fields with errors */
+input[data-flux-control]:invalid,
+input[data-flux-control][aria-invalid="true"],
+input[data-flux-control].error,
+input[data-flux-control][data-error] {
+    border-color: rgb(209 213 219) !important;
+    /* gray-300 */
+    @apply dark:border-gray-600;
+    @apply focus:border-black focus:ring-black;
+}
+
+/* Remove red border from select fields with errors */
+select[data-flux-control]:invalid,
+select[data-flux-control][aria-invalid="true"],
+select[data-flux-control].error,
+select[data-flux-control][data-error] {
+    border-color: rgb(209 213 219) !important;
+    /* gray-300 */
+    @apply dark:border-gray-600;
+    @apply focus:border-black focus:ring-black;
+}
+
+/* Remove red border from textarea fields with errors */
+textarea[data-flux-control]:invalid,
+textarea[data-flux-control][aria-invalid="true"],
+textarea[data-flux-control].error,
+textarea[data-flux-control][data-error] {
+    border-color: rgb(209 213 219) !important;
+    /* gray-300 */
+    @apply dark:border-gray-600;
+    @apply focus:border-black focus:ring-black;
+}
+
+/* Remove red border from file input fields with errors */
+input[type="file"][data-flux-control]:invalid,
+input[type="file"][data-flux-control][aria-invalid="true"],
+input[type="file"][data-flux-control].error,
+input[type="file"][data-flux-control][data-error] {
+    border-color: rgb(209 213 219) !important;
+    /* gray-300 */
+    @apply dark:border-gray-600;
+    @apply focus:border-black focus:ring-black;
+}
+.main-body-100{
+    background-color: #f4f7fa;
+}
+
+/* PowerGrid responsive styles */
+@media (max-width: 768px) {
+    #pg-footer{
+        border: 0 !important;
+    }
+    .powergrid-table-scroll-container {
+        padding-inline: calc(var(--spacing) * 0) !important;
+        margin-inline: calc(var(--spacing) * 0);
+        border: 0;
+    }
+}
+@media (max-width: 768px) {
+    #power-grid-table-base, #power-grid-table-container {
+        padding-inline: calc(var(--spacing) * 0) !important;
+    }
+}
+@media (min-width: 769px) {
+    .power-grid-table tbody td {
+        border-bottom-style: var(--tw-border-style);
+        border-bottom-width: 1px;
+        border-right-width: 1px;
+    }
+    .power-grid-table tbody td:last-child {
+        border-bottom-style: var(--tw-border-style);
+        border-bottom-width: 1px;
+        border-right-width: 0px;
+    }
+}
+@media (max-width: 768px) {
+    .power-grid-table tbody td .pg-actions{
+        display: block;
+    }
+}

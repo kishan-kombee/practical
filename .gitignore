@@ -1,0 +1,79 @@
+# -----------------------
+# Dependencies
+# -----------------------
+/node_modules
+/vendor
+
+# -----------------------
+# Laravel public artifacts
+# (compiled assets, hot files, storage symlink, etc.)
+# -----------------------
+/public/build
+/public/hot
+/public/storage
+/public/mix-manifest.json
+
+# Project-specific public generated/uploaded content
+/public/assets
+/public/samples
+/public/vendor
+/public/image_bucket
+
+# -----------------------
+# Environment & secrets
+# -----------------------
+.env
+.env.backup
+.env.production
+/storage/*.key
+
+# -----------------------
+# Laravel logs/debug tools
+# -----------------------
+/storage/debugbar
+/storage/pail
+
+# -----------------------
+# Testing
+# -----------------------
+/.phpunit.cache
+.phpunit.result.cache
+
+# -----------------------
+# Local dev tools (Homestead / Vagrant)
+# -----------------------
+Homestead.json
+Homestead.yaml
+/.vagrant
+
+# -----------------------
+# Package manager logs
+# -----------------------
+npm-debug.log
+yarn-error.log
+
+# -----------------------
+# IDE / editor files
+# -----------------------
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+.history
+
+# -----------------------
+# Optional tool configs
+# -----------------------
+/auth.json
+.phpactor.json
+
+# -----------------------
+# OS / misc
+# -----------------------
+.DS_Store
+
+# -----------------------
+# Postman
+# -----------------------
+postman.json

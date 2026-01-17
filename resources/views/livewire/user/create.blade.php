@@ -1,0 +1,80 @@
+<div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
+    <form wire:submit="store" class="space-y-3">
+        <!-- Basic Information Section -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl lg:border border-gray-200 dark:border-gray-700 p-2 lg:p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2  gap-4 lg:gap-6 mb-0">
+                     <x-flux.single-select id="role_id" label="{{ __('messages.user.create.label_roles') }}" wire:model="role_id" data-testid="role_id" required>
+        <option value='' >Select {{ __('messages.user.create.label_roles') }}</option>
+   @if (!empty($roles))
+       @foreach ($roles as $value) 
+           <option value="{{ $value->id}}" >{{$value->name}}</option>
+       @endforeach 
+   @endif
+    </x-flux.single-select>
+                             <div class="flex-1">
+        <flux:field>
+            <flux:label for="first_name" required>{{ __('messages.user.create.label_first_name') }} <span class="text-red-500">*</span></flux:label>
+            <flux:input type="text" data-testid="first_name" id="first_name" wire:model="first_name" placeholder="Enter {{ __('messages.user.create.label_first_name') }}" required/>
+            <flux:error name="first_name" data-testid="first_name_error"/>
+        </flux:field>
+    </div>
+                             <div class="flex-1">
+        <flux:field>
+            <flux:label for="last_name" required>{{ __('messages.user.create.label_last_name') }} <span class="text-red-500">*</span></flux:label>
+            <flux:input type="text" data-testid="last_name" id="last_name" wire:model="last_name" placeholder="Enter {{ __('messages.user.create.label_last_name') }}" required/>
+            <flux:error name="last_name" data-testid="last_name_error"/>
+        </flux:field>
+    </div>
+                         
+                         <div class="flex-1">
+    <flux:field>
+        <flux:label for="mobile_number" required>{{ __('messages.user.create.label_mobile_number') }} <span class="text-red-500">*</span></flux:label>
+        <flux:input type="number" wire:model="mobile_number" data-testid="mobile_number" required />
+        <flux:error name="mobile_number" data-testid="mobile_number_error"/>
+    </flux:field>
+</div>
+                             <div class="flex-1">
+        <flux:field>
+            <flux:label for="password" required>{{ __('messages.user.create.label_password') }} <span class="text-red-500">*</span></flux:label>
+            <flux:input type="password" data-testid="password" id="password" wire:model="password" placeholder="Enter {{ __('messages.user.create.label_password') }}" required/>
+            <flux:error name="password" data-testid="password_error"/>
+        </flux:field>
+    </div>
+                             <div class="flex-1" x-data="{ status: @entangle('status') }">
+        <flux:field>
+            <flux:label for="status_switch">{{ __('messages.user.create.label_status') }}
+                <span class="text-red-500">*</span></flux:label>
+            <div class="flex items-center gap-3">
+                <flux:switch
+                    id="status_switch"
+                    data-testid="status"
+                    x-bind:checked="status === 'Y'"
+                    x-on:change="$wire.set('status', $event.target.checked ? 'Y' : 'N')"
+                    class="cursor-pointer"
+                />
+                <label for="status_switch"
+                    class="text-sm font-medium text-gray-700 dark:text-gray-300 cursor-pointer"
+                    x-text="status === 'Y' ? 'Active' : 'Inactive'">
+                </label>
+            </div>
+            <flux:error name="status" data-testid="status_error" />
+        </flux:field>
+    </div>
+            </div>
+        </div>
+
+         
+
+        <!-- Action Buttons -->
+        <div class="flex items-center justify-top gap-3 mt-3 lg:mt-3 border-t-2 lg:border-none border-gray-100 py-4 lg:py-0">
+
+            <flux:button type="submit" variant="primary" data-testid="submit_button" class="cursor-pointer h-8! lg:h-9!" wire:loading.attr="disabled" wire:target="store">
+                {{ __('messages.submit_button_text') }}
+            </flux:button>
+
+            <flux:button type="button" data-testid="cancel_button" class="cursor-pointer h-8! lg:h-9!" variant="outline" href="/user" wire:navigate>
+                {{ __('messages.cancel_button_text') }}
+            </flux:button>
+        </div>
+    </form>
+</div>

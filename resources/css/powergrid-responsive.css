@@ -1,0 +1,1335 @@
+/* PowerGrid Responsive Styles */
+
+/* Base PowerGrid table styles - Desktop original layout */
+.powergrid-table-scroll-container {
+    @apply w-full;
+    @apply overflow-x-auto;
+    @apply overflow-y-visible;
+}
+
+/* Table wrapper - Desktop maintains original behavior */
+.powergrid-table-wrapper {
+    @apply w-full;
+}
+
+/* Base table styles - Desktop original layout */
+.power-grid-table {
+    @apply border-collapse;
+    @apply w-full;
+    @apply table-auto;
+    @apply whitespace-nowrap;
+    @apply text-sm; /* Base text size for entire table */
+}
+
+/* On mobile, allow content to wrap instead of being cut off */
+@media (min-width: 769px) {
+    .power-grid-table tbody td div, .power-grid-table tbody td span, .power-grid-table tbody td p, .power-grid-table thead th div, .power-grid-table thead th span {
+        font-size: var(--text-sm);
+        line-height: var(--tw-leading, var(--text-sm--line-height));
+        text-transform: capitalize !important;
+    }
+}
+@media (min-width: 769px) {
+    .power-grid-table tbody td {
+        display: table-cell;
+        padding-inline: calc(var(--spacing) * 4) !important;
+        padding-block: calc(var(--spacing) * 1.2) !important;
+        white-space: nowrap;
+        font-size: var(--text-sm);
+        line-height: var(--tw-leading, var(--text-sm--line-height));
+        --tw-leading: var(--leading-snug);
+        line-height: var(--leading-snug);
+        display: table-cell !important;
+    }
+}
+.power-grid-table thead th {
+    padding-block: calc(var(--spacing) * 3) !important
+}
+
+@media (max-width: 768px) {
+    /* .p-6 {
+        padding: 0.5rem !important;
+    } */
+
+    .power-grid-table {
+        white-space: normal !important;
+    }
+}
+
+
+/* Global text size for all PowerGrid table elements */
+.power-grid-table,
+.power-grid-table th,
+.power-grid-table td,
+.power-grid-table thead th,
+.power-grid-table tbody td,
+.power-grid-table tbody th {
+    @apply text-sm;
+    @apply leading-snug;
+}
+
+/* Table header cells - slightly smaller for headers */
+.power-grid-table thead th {
+    @apply text-xs;
+    @apply font-semibold;
+    @apply leading-tight;
+}
+
+/* Table body cells */
+.power-grid-table tbody td {
+    @apply text-sm;
+    @apply leading-snug;
+}
+
+/* All content inside table cells */
+.power-grid-table td *,
+.power-grid-table th *,
+.power-grid-table td > *,
+.power-grid-table th > * {
+    @apply text-sm;
+}
+
+/* Nested divs and spans */
+.power-grid-table td div,
+.power-grid-table td span,
+.power-grid-table th div,
+.power-grid-table th span {
+    @apply text-sm;
+}
+
+/* Links in table */
+.power-grid-table td a,
+.power-grid-table th a {
+    @apply text-sm;
+}
+
+/* Badges and labels */
+.power-grid-table .badge,
+.power-grid-table span[class*="badge"] {
+    @apply text-xs;
+}
+
+/* Mobile - Card-based layout, no horizontal scroll - match footer alignment */
+@media (max-width: 768px) {
+    .powergrid-table-scroll-container {
+        @apply overflow-x-visible;
+        @apply px-2;
+    }
+
+    /* Ensure table wrapper matches footer padding */
+    .powergrid-table-wrapper {
+        @apply px-0;
+    }
+
+    /* Table base container - match footer padding */
+    #power-grid-table-base,
+    #power-grid-table-container {
+        @apply px-2;
+    }
+
+    /* Convert table to block layout on mobile */
+    .power-grid-table,
+    .power-grid-table thead,
+    .power-grid-table tbody,
+    .power-grid-table th,
+    .power-grid-table td,
+    .power-grid-table tr {
+        @apply block;
+    }
+
+    /* Hide table header on mobile */
+    .power-grid-table thead {
+        @apply hidden;
+    }
+
+    /* Completely remove the inline filter row from table on mobile - ULTRA AGGRESSIVE */
+    /* Target the entire filter row - multiple specific selectors */
+    /* EXCLUDE rows with toggle cells (data rows) */
+    .power-grid-table tbody tr:has(td[wire\\:key^="column-filter"]):not(:has(.mobile-toggle-cell)),
+    .power-grid-table tbody tr:has(td[wire\\:key*="column-filter-"]):not(:has(.mobile-toggle-cell)),
+    .power-grid-table tbody tr:has(td[wire\\:key*="filter-"]):not(:has(.mobile-toggle-cell)),
+    .power-grid-table tbody tr:has(td[class*="tdFilters"]):not(:has(.mobile-toggle-cell)),
+    .power-grid-table tbody tr[class*="trFilters"]:not(:has(.mobile-toggle-cell)),
+    .power-grid-table tbody tr:has(td:has(input[type="text"])):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])),
+    .power-grid-table tbody tr:has(td:has(select)):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])),
+    .power-grid-table tbody tr:has(td:has(input[type="date"])):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])),
+    .power-grid-table tbody tr:has(td:has(input[type="number"])):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])),
+    .power-grid-table tbody tr:has(td:has(.flux-input)):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])),
+    .power-grid-table tbody tr:has(td:has(.flux-select)):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])),
+    .power-grid-table tbody tr:has(td:has(.flatpickr)):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])),
+    .power-grid-table tbody tr:has(td:has(input[data-cy*="input_text"])):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])),
+    .power-grid-table tbody tr:has(td:has(input[wire\\:key^="input-"])):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])),
+    .power-grid-table tbody tr:has(td:has(select[wire\\:model*="filters"])):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])),
+    /* Additional aggressive selectors - exclude toggle cells */
+    .power-grid-table tbody tr:first-of-type:has(td[wire\\:key*="column-filter"]):not(:has(.mobile-toggle-cell)),
+    .power-grid-table tbody tr:nth-of-type(1):has(td[wire\\:key*="column-filter"]):not(:has(.mobile-toggle-cell)),
+    table.power-grid-table tbody tr:has(td[wire\\:key*="column-filter"]):not(:has(.mobile-toggle-cell)),
+    .power-grid-table tbody > tr:has(> td[wire\\:key*="column-filter"]):not(:has(.mobile-toggle-cell)) {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        line-height: 0 !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        border-width: 0 !important;
+        border-spacing: 0 !important;
+        font-size: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+        width: 0 !important;
+        opacity: 0 !important;
+        transform: scale(0) !important;
+        pointer-events: none !important;
+    }
+
+    /* Additional fallback - hide any row that has multiple filter cells (but not toggle cells) */
+    .power-grid-table tbody tr:has(td[wire\\:key*="column-filter"]):has(td[wire\\:key*="column-filter"]:nth-child(2)):not(:has(.mobile-toggle-cell)),
+    .power-grid-table tbody tr:has(td[wire\\:key*="column-filter"]):has(td[wire\\:key*="column-filter"]:nth-child(3)):not(:has(.mobile-toggle-cell)) {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        position: absolute !important;
+        left: -9999px !important;
+        width: 0 !important;
+        opacity: 0 !important;
+    }
+
+    /* Hide all cells in the filter row - comprehensive targeting (but not toggle cells) */
+    .power-grid-table tbody tr:has(td[wire\\:key^="column-filter"]):not(:has(.mobile-toggle-cell)) td:not(.mobile-toggle-cell),
+    .power-grid-table tbody tr:has(td[wire\\:key*="column-filter-"]):not(:has(.mobile-toggle-cell)) td:not(.mobile-toggle-cell),
+    .power-grid-table tbody tr:has(td[wire\\:key*="filter-"]):not(:has(.mobile-toggle-cell)) td:not(.mobile-toggle-cell),
+    .power-grid-table tbody tr:has(td[class*="tdFilters"]):not(:has(.mobile-toggle-cell)) td:not(.mobile-toggle-cell),
+    .power-grid-table tbody tr[class*="trFilters"]:not(:has(.mobile-toggle-cell)) td:not(.mobile-toggle-cell),
+    .power-grid-table tbody tr:has(td:has(input[data-cy*="input_text"])):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])) td:not(.mobile-toggle-cell),
+    .power-grid-table tbody tr:has(td:has(select[wire\\:model*="filters"])):not(:has(.mobile-toggle-cell)):not(:has([data-row-id])) td:not(.mobile-toggle-cell) {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        line-height: 0 !important;
+        font-size: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+        opacity: 0 !important;
+    }
+
+    /* Hide specific filter row cells by wire:key pattern */
+    .power-grid-table tbody td[wire\\:key^="column-filter"],
+    .power-grid-table tbody td[wire\\:key*="column-filter-"],
+    .power-grid-table tbody td[wire\\:key*="filter-"],
+    .power-grid-table tbody td[wire\\:key="column-filter-id"],
+    .power-grid-table tbody td[wire\\:key="column-filter-name"],
+    .power-grid-table tbody td[wire\\:key="column-filter-email"],
+    .power-grid-table tbody td[wire\\:key="column-filter-role_badge"],
+    .power-grid-table tbody td[wire\\:key="column-filter-dob_formatted"],
+    .power-grid-table tbody td[wire\\:key="column-filter-status_badge"],
+    .power-grid-table tbody td[wire\\:key="column-filter-country_name"],
+    .power-grid-table tbody td[wire\\:key="column-filter-state_name"],
+    .power-grid-table tbody td[wire\\:key="column-filter-city_name"],
+    .power-grid-table tbody td[wire\\:key="column-filter-timezone_label"],
+    .power-grid-table tbody td[wire\\:key="column-filter-hobbies_formatted"],
+    .power-grid-table tbody td[wire\\:key="column-filter-skills_formatted"],
+    .power-grid-table tbody td[wire\\:key="column-filter-event_date_formatted"],
+    .power-grid-table tbody td[wire\\:key="column-filter-event_datetime_formatted"],
+    .power-grid-table tbody td[wire\\:key="column-filter-event_time_formatted"],
+    .power-grid-table tbody td[wire\\:key="column-filter-bg_color_display"],
+    .power-grid-table tbody td[wire\\:key="column-filter-description_formatted"],
+    .power-grid-table tbody td[wire\\:key="column-filter-created_at_formatted"],
+    .power-grid-table tbody td[wire\\:key="column-filter-updated_at_formatted"] {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        position: absolute !important;
+        left: -9999px !important;
+        opacity: 0 !important;
+    }
+
+    /* Target the entire row if it contains multiple column-filter cells */
+    .power-grid-table tbody tr:has(td[wire\\:key^="column-filter"]):has(td[wire\\:key^="column-filter"]:nth-of-type(2)) {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        line-height: 0 !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        position: absolute !important;
+        left: -9999px !important;
+        width: 0 !important;
+        opacity: 0 !important;
+    }
+
+    /* Hide inline filters in table header on mobile (they're shown in mobile filter container instead) */
+    .power-grid-table thead th .powergrid-column-search,
+    .power-grid-table thead th input,
+    .power-grid-table thead th select,
+    .power-grid-table thead th .flux-input,
+    .power-grid-table thead th .flux-select,
+    .power-grid-table thead th [class*="filter"],
+    .power-grid-table thead th .filter-item-wrapper,
+    .power-grid-table thead th label,
+    .power-grid-table thead th .space-y-1,
+    .power-grid-table thead th .space-y-2,
+    .power-grid-table thead th > div:has(input),
+    .power-grid-table thead th > div:has(select),
+    .power-grid-table thead th > div:has(.flux-input),
+    .power-grid-table thead th > div:has(.flux-select),
+    /* Hide PowerGrid inline filter components */
+    .power-grid-table thead th [class*="FilterInputText"],
+    .power-grid-table thead th [class*="FilterSelect"],
+    .power-grid-table thead th [class*="FilterNumber"],
+    .power-grid-table thead th [class*="FilterDate"],
+    .power-grid-table thead th [class*="FilterBoolean"],
+    /* Hide filter containers in header */
+    .power-grid-table thead th > div[class*="space-y"],
+    .power-grid-table thead th > div > div {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* Hide entire filter rows in table header on mobile */
+    .power-grid-table thead tr:has(.powergrid-column-search),
+    .power-grid-table thead tr:has(input),
+    .power-grid-table thead tr:has(select),
+    .power-grid-table thead tr:has([class*="filter"]) {
+        display: none !important;
+    }
+
+    /* Hide inline filters component wrapper */
+    .power-grid-table thead + tbody::before,
+    .power-grid-table thead ~ tbody::before {
+        content: none !important;
+    }
+
+
+    /* Hide filter cells in table body (inline filters) */
+    .power-grid-table tbody td[wire\\:key*="column-filter"],
+    .power-grid-table tbody td[wire\\:key*="filter-"],
+    .power-grid-table tbody td:has(input),
+    .power-grid-table tbody td:has(select),
+    .power-grid-table tbody td:has(.flux-input),
+    .power-grid-table tbody td:has(.flux-select),
+    .power-grid-table tbody td:has([class*="FilterInputText"]),
+    .power-grid-table tbody td:has([class*="FilterSelect"]),
+    .power-grid-table tbody td:has([class*="FilterNumber"]),
+    .power-grid-table tbody td:has([class*="FilterDate"]),
+    .power-grid-table tbody td:has([class*="FilterBoolean"]) {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Hide any divs containing filters in table cells (but not in toggle cells or checkbox cells) */
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])):not([class*="checkbox"]) div:has(input):not(:has(input[type="checkbox"])),
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])):not([class*="checkbox"]) div:has(select),
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])):not([class*="checkbox"]) div:has(.flux-input),
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])):not([class*="checkbox"]) div:has(.flux-select) {
+        display: none !important;
+    }
+
+    /* Hide all input/select elements directly in table cells on mobile (but not checkboxes or toggle cells) */
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])) input:not([type="checkbox"]),
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])) select,
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])) textarea,
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])) .flux-input,
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])) .flux-select,
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])) button[type="button"]:has(svg),
+    /* Hide filter components in any column (but not toggle cells or checkbox cells) */
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])) [class*="Filter"],
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(:has(input[type="checkbox"])) [class*="filter"],
+    /* Hide first column if it contains filters (but not toggle cells or checkbox cells) */
+    .power-grid-table tbody tr:not(:has(.mobile-toggle-cell)):not(:has(input[type="checkbox"])) td:first-child:has(input):not(:has(input[type="checkbox"])),
+    .power-grid-table tbody tr:not(:has(.mobile-toggle-cell)):not(:has(input[type="checkbox"])) td:first-child:has(select),
+    .power-grid-table tbody tr:not(:has(.mobile-toggle-cell)):not(:has(input[type="checkbox"])) td:first-child:has(.flux-input),
+    .power-grid-table tbody tr:not(:has(.mobile-toggle-cell)):not(:has(input[type="checkbox"])) td:first-child:has(.flux-select) {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+    }
+
+    /* Ensure checkboxes are visible on mobile - comprehensive targeting - match footer alignment */
+    .power-grid-table tbody td:has(input[type="checkbox"]),
+    .power-grid-table tbody td[data-column="checkbox"],
+    .power-grid-table tbody td:has(.checkbox),
+    .power-grid-table tbody td[class*="checkbox"],
+    /* Target checkbox row component */
+    .power-grid-table tbody tr td:has(div[class*="checkbox"]),
+    .power-grid-table tbody tr td:has(label[class*="checkbox"]) {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        @apply items-center;
+        @apply py-2;
+        @apply px-2;
+        order: 0 !important; /* Checkbox should appear first */
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
+        width: auto !important;
+    }
+
+    /* Ensure checkbox input and container are visible */
+    .power-grid-table tbody td:has(input[type="checkbox"]) input[type="checkbox"],
+    .power-grid-table tbody td[data-column="checkbox"] input[type="checkbox"],
+    .power-grid-table tbody td:has(.checkbox) input[type="checkbox"],
+    .power-grid-table tbody td[class*="checkbox"] input[type="checkbox"],
+    .power-grid-table tbody td:has(div[class*="checkbox"]) input[type="checkbox"],
+    .power-grid-table tbody td:has(label[class*="checkbox"]) input[type="checkbox"] {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        @apply w-4;
+        @apply h-4;
+        @apply cursor-pointer;
+        height: 1rem !important;
+        width: 1rem !important;
+        min-height: 1rem !important;
+        min-width: 1rem !important;
+    }
+
+    /* Ensure checkbox container divs and labels are visible */
+    .power-grid-table tbody td:has(input[type="checkbox"]) div,
+    .power-grid-table tbody td:has(input[type="checkbox"]) label,
+    .power-grid-table tbody td[class*="checkbox"] div,
+    .power-grid-table tbody td[class*="checkbox"] label {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Style rows as cards on mobile - match footer alignment */
+    .power-grid-table tbody tr {
+        @apply block;
+        @apply mb-2;
+        @apply border;
+        @apply border-gray-200;
+        @apply dark:border-gray-700;
+        @apply rounded;
+        @apply shadow-sm;
+        @apply bg-white;
+        @apply dark:bg-gray-800;
+        @apply p-0;
+        @apply mx-0;
+        @apply overflow-hidden;
+        @apply transition-shadow;
+        @apply hover:shadow-md;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    /* Checkbox should appear first */
+    .power-grid-table tbody td:has(input[type="checkbox"]),
+    .power-grid-table tbody td[data-column="checkbox"] {
+        order: 0 !important;
+    }
+
+    /* Default visible fields (first 3) - appear after checkbox */
+    .power-grid-table tbody td:not(.mobile-toggle-cell):not(.mobile-hidden-field):not([data-column="actions"]):not(:has(input[type="checkbox"])):not([data-column="checkbox"]) {
+        order: 1;
+    }
+
+    /* Hide fields by default that should be expanded */
+    /* Alpine.js x-show and JavaScript will handle visibility dynamically */
+    .power-grid-table tbody td.mobile-hidden-field {
+        display: none !important;
+        order: 2; /* When visible, appear after first 3 fields but before toggle */
+    }
+
+    /* Allow inline styles to override (set by JavaScript) */
+    /* Expanded fields should appear above toggle button - use lower order value */
+    /* Ensure expanded fields have the same styling as visible fields - match footer alignment */
+    /* Allow content to wrap to next line */
+    .power-grid-table tbody td.mobile-hidden-field[style*="display: block"],
+    .power-grid-table tbody td.mobile-hidden-field[style*="display:block"] {
+        display: flex !important;
+        align-items: flex-start;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        order: 2 !important; /* Expanded fields appear above toggle button (order 3) */
+        @apply text-left;
+        @apply px-2;
+        @apply py-1.5;
+        @apply border-b;
+        @apply border-gray-100;
+        @apply dark:border-gray-700;
+        @apply text-sm;
+        @apply leading-tight;
+        @apply min-h-[1.75rem];
+        white-space: normal;
+        overflow: visible;
+    }
+
+    /* Toggle button cell - higher order so it appears after expanded fields - ultra compact */
+    .power-grid-table tbody td.mobile-toggle-cell {
+        @apply block;
+        @apply text-center;
+        @apply py-1;
+        @apply border-t;
+        @apply border-gray-200;
+        @apply dark:border-gray-700;
+        @apply bg-gray-50;
+        @apply dark:bg-gray-900;
+        order: 3 !important; /* Higher order than expanded fields (order 2) to appear after them */
+    }
+
+    /* Action column should always appear last */
+    .power-grid-table tbody td[data-column="actions"] {
+        order: 999 !important;
+    }
+
+    /* Toggle button styling - compact design */
+    .mobile-expand-toggle {
+        @apply inline-flex;
+        @apply items-center;
+        @apply justify-center;
+        @apply px-3;
+        @apply py-1.5;
+        @apply text-xs;
+        @apply font-medium;
+        @apply text-gray-600;
+        @apply dark:text-gray-400;
+        @apply bg-transparent;
+        @apply hover:bg-gray-100;
+        @apply dark:hover:bg-gray-700;
+        @apply transition-colors;
+        @apply focus:outline-none;
+        @apply rounded;
+        border: none;
+    }
+
+    /* Style cells as block elements with labels - match footer alignment */
+    /* Ensure content wraps to next line instead of being cut off */
+    .power-grid-table tbody td {
+        @apply block;
+        @apply text-left;
+        @apply px-2;
+        @apply py-1.5;
+        @apply border-b;
+        @apply border-gray-100;
+        @apply dark:border-gray-700;
+        @apply text-sm;
+        @apply leading-tight;
+        @apply min-h-[1.75rem];
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+
+    /* Better handling for long content - ensure it wraps to next line */
+    .power-grid-table tbody td > * {
+        @apply break-words;
+        @apply text-sm;
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+
+    /* Handle HTML content properly - ensure wrapping */
+    .power-grid-table tbody td div,
+    .power-grid-table tbody td span,
+    .power-grid-table tbody td p {
+        @apply break-words;
+        @apply text-sm;
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+
+    /* Add labels using data-title attribute - ultra compact design */
+    /* Label should not wrap, but allow content to wrap */
+    .power-grid-table tbody td:before {
+        content: attr(data-title);
+        @apply inline-block;
+        @apply font-medium;
+        @apply text-gray-600;
+        @apply dark:text-gray-400;
+        @apply text-xs;
+        @apply leading-tight;
+        @apply uppercase;
+        @apply tracking-wide;
+        flex-shrink: 0;
+        min-width: fit-content;
+        white-space: nowrap;
+        align-self: flex-start;
+        padding-top: 0.125rem; /* Slight top padding for alignment when content wraps */
+    }
+
+    /* Fallback to data-column if data-title is empty */
+    .power-grid-table tbody td[data-title=""]:before {
+        content: attr(data-column);
+        text-transform: capitalize;
+    }
+
+    /* Remove border from last cell in each row */
+    .power-grid-table tbody td:last-child {
+        @apply border-b-0;
+    }
+
+    /* Style action column specially - always visible - match footer alignment */
+    .power-grid-table tbody td[data-column="actions"] {
+        @apply text-center;
+        @apply pt-1.5;
+        @apply pb-1.5;
+        @apply px-2;
+        @apply border-t-2;
+        @apply border-gray-200;
+        @apply dark:border-gray-700;
+        @apply bg-gray-50;
+        @apply dark:bg-gray-900;
+        @apply min-h-auto;
+        display: block !important; /* Always show action column */
+    }
+
+    /* Hide label for action column - only show buttons */
+    .power-grid-table tbody td[data-column="actions"]:before {
+        display: none !important;
+        content: none !important;
+    }
+
+    /* Ensure toggle button is always visible and doesn't show a label */
+    .power-grid-table tbody td.mobile-toggle-cell {
+        display: block !important;
+    }
+
+    .power-grid-table tbody td.mobile-toggle-cell:before {
+        display: none !important;
+        content: none !important;
+    }
+
+    /* Style checkbox column - compact and visible - match footer alignment */
+    .power-grid-table tbody td:has(input[type="checkbox"]),
+    .power-grid-table tbody td[data-column="checkbox"] {
+        @apply text-left;
+        @apply py-2;
+        @apply px-2;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        @apply items-center;
+        order: 0 !important; /* Checkbox should appear first */
+    }
+
+    /* Ensure checkbox input is visible */
+    .power-grid-table tbody td:has(input[type="checkbox"]) input[type="checkbox"],
+    .power-grid-table tbody td[data-column="checkbox"] input[type="checkbox"] {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        @apply w-4;
+        @apply h-4;
+        @apply cursor-pointer;
+        @apply rounded;
+        @apply border-gray-300;
+        @apply dark:border-gray-600;
+        @apply text-blue-600;
+        @apply focus:ring-blue-500;
+    }
+
+    /* Hide label for checkbox column - only show checkbox */
+    .power-grid-table tbody td:has(input[type="checkbox"]):before,
+    .power-grid-table tbody td[data-column="checkbox"]:before {
+        display: none !important;
+        content: none !important;
+    }
+
+    /* Better spacing for first cell - match footer alignment */
+    .power-grid-table tbody td:first-child {
+        @apply pt-2;
+        @apply px-2;
+    }
+
+    /* Better spacing for last cell before actions */
+    .power-grid-table tbody td[data-column="actions"]:nth-last-child(2) {
+        @apply border-b-0;
+    }
+
+    /* Hide empty cells (but not checkbox cells) */
+    .power-grid-table tbody td:empty:not(:has(input[type="checkbox"])):not([class*="checkbox"]) {
+        @apply hidden;
+    }
+
+    /* Ensure checkbox cells are never hidden even if they appear empty */
+    .power-grid-table tbody td:has(input[type="checkbox"]),
+    .power-grid-table tbody td[class*="checkbox"] {
+        display: flex !important;
+    }
+
+    /* Handle badges and inline elements - compact */
+    .power-grid-table tbody td .badge,
+    .power-grid-table tbody td span[class*="badge"],
+    .power-grid-table tbody td span[class*="px-"],
+    .power-grid-table tbody td span[class*="py-"] {
+        @apply inline-block;
+        @apply mr-1;
+        @apply mb-0.5;
+        white-space: nowrap;
+        @apply text-xs;
+    }
+
+    /* Handle long URLs and emails - ensure they wrap to next line */
+    .power-grid-table tbody td a {
+        @apply break-all;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+
+    /* Handle images and media */
+    .power-grid-table tbody td img {
+        @apply max-w-full;
+        @apply h-auto;
+        @apply rounded;
+    }
+
+    /* Better handling for description and long text fields - ultra compact */
+    .power-grid-table tbody td[data-column*="description"],
+    .power-grid-table tbody td[data-column*="Description"] {
+        @apply py-1.5;
+    }
+
+    /* Make cell content display inline with label - match footer alignment */
+    /* Apply to all cells including expanded ones - allow content to wrap */
+    .power-grid-table tbody td:not(.mobile-toggle-cell) {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        overflow: visible;
+        white-space: normal;
+    }
+
+    /* Value content should take remaining space and wrap properly */
+    .power-grid-table tbody td > *:not(:before),
+    .power-grid-table tbody td > div,
+    .power-grid-table tbody td > span:not(:before) {
+        flex: 1;
+        min-width: 0;
+        @apply text-sm;
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        overflow: visible;
+    }
+
+    /* Ensure proper spacing for nested content - compact */
+    .power-grid-table tbody td .pg-actions {
+        @apply flex;
+        @apply flex-wrap;
+        @apply gap-1.5;
+        @apply justify-center;
+    }
+
+    /* Compact action buttons */
+    .power-grid-table tbody td .pg-actions button,
+    .power-grid-table tbody td .pg-actions a {
+        @apply text-xs;
+        @apply px-2;
+        @apply py-1;
+    }
+
+    /* Handle table content inside cells */
+    .power-grid-table tbody td table {
+        @apply w-full;
+        @apply text-xs;
+    }
+}
+
+/* Tablet and Desktop - Original table layout (unchanged from original) */
+@media (min-width: 769px) {
+    /* Reset all mobile card styles - restore original table */
+    .powergrid-table-scroll-container {
+        @apply overflow-x-auto;
+        @apply mx-0;
+        @apply px-0;
+    }
+
+    .power-grid-table {
+        @apply table;
+        @apply table-auto;
+        @apply w-full;
+        @apply whitespace-nowrap;
+    }
+
+    .power-grid-table thead {
+        @apply table-header-group;
+        display: table-header-group !important;
+    }
+
+    .power-grid-table tbody {
+        @apply table-row-group;
+        display: table-row-group !important;
+    }
+
+    .power-grid-table tbody tr {
+        @apply table-row;
+        display: table-row !important;
+    }
+
+    .power-grid-table th,
+    .power-grid-table td {
+        @apply table-cell;
+        display: table-cell !important;
+    }
+
+    .power-grid-table tbody td {
+        @apply table-cell;
+        @apply px-4;
+        @apply py-3;
+        @apply whitespace-nowrap;
+        @apply text-sm;
+        @apply leading-snug;
+        display: table-cell !important;
+    }
+
+    /* Desktop table header cells - smaller text */
+    .power-grid-table thead th {
+        @apply text-xs;
+        @apply font-semibold;
+        @apply leading-tight;
+        @apply px-3;
+        @apply py-2;
+    }
+
+    /* All content in desktop cells */
+    .power-grid-table tbody td *,
+    .power-grid-table tbody td > *,
+    .power-grid-table thead th *,
+    .power-grid-table thead th > * {
+        @apply text-sm;
+    }
+
+    /* Nested elements */
+    .power-grid-table tbody td div,
+    .power-grid-table tbody td span,
+    .power-grid-table tbody td p,
+    .power-grid-table thead th div,
+    .power-grid-table thead th span {
+        @apply text-sm;
+    }
+
+    /* Remove all mobile pseudo-elements */
+    .power-grid-table tbody td:before {
+        content: none !important;
+        display: none !important;
+    }
+
+    /* Hide toggle button on desktop, but show on mobile */
+    @media (min-width: 769px) {
+        .power-grid-table tbody td.mobile-toggle-cell {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        /* Keep toggle cell visible on mobile - it's needed for read more functionality */
+        .power-grid-table tbody td.mobile-toggle-cell {
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .mobile-expand-toggle {
+            display: inline-flex !important;
+            visibility: visible !important;
+        }
+    }
+
+    /* Remove mobile card styling */
+    .power-grid-table tbody tr {
+        @apply border-0;
+        @apply mb-0;
+        @apply rounded-none;
+        @apply shadow-none;
+        @apply bg-transparent;
+    }
+
+    .power-grid-table tbody td {
+        @apply border-b;
+        @apply border-gray-200;
+        @apply dark:border-gray-700;
+        @apply text-left;
+    }
+}
+
+/* Responsive expand container styles */
+.responsive-row-expand-container {
+    @apply flex;
+    @apply flex-col;
+    @apply gap-2;
+    @apply p-4;
+}
+
+@media (min-width: 641px) {
+    .responsive-row-expand-container {
+        @apply flex-row;
+        @apply flex-wrap;
+    }
+}
+
+/* Reduce spacing between filter sections - compact */
+.pg-enabled-filters-base {
+    @apply mb-1.5;
+}
+
+.pg-filter-container {
+    @apply mt-1;
+    @apply pt-1.5;
+    @apply pb-1.5;
+}
+
+/* Mobile Filter Toggle Button - Hidden on desktop, visible on mobile */
+/* The Tailwind class 'block md:hidden' handles visibility, but we ensure it with CSS too */
+@media (min-width: 769px) {
+    .mobile-filter-button-container {
+        display: none !important;
+    }
+
+    /* Show desktop filter toggle on desktop */
+    .desktop-filter-toggle {
+        display: block !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-filter-button-container {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        flex-shrink: 0 !important;
+    }
+
+    .mobile-filter-toggle-btn {
+        display: inline-flex !important;
+        visibility: visible !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Hide desktop filter toggle on mobile */
+    .desktop-filter-toggle {
+        display: none !important;
+    }
+
+    /* Ensure filter button is visible in header */
+    .mobile-filter-button-container button {
+        display: inline-flex !important;
+        visibility: visible !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Ensure header flex container shows the button */
+    .flex.flex-row.items-center .mobile-filter-button-container {
+        display: inline-flex !important;
+        visibility: visible !important;
+    }
+}
+
+/* Reduce spacing in header for better filter layout - compact */
+#power-grid-table-base > div:first-child {
+    @apply mb-1.5;
+}
+
+/* Reduce gap between enabled filters and filter inputs - compact */
+.pg-enabled-filters-base + .pg-filter-container,
+.pg-enabled-filters-base ~ .pg-filter-container {
+    @apply mt-0.5;
+}
+
+/* Additional compact optimizations for mobile */
+@media (max-width: 768px) {
+    /* Compact table container - match footer alignment */
+    .powergrid-table-scroll-container {
+        @apply px-2;
+        @apply mx-0;
+    }
+
+    /* Compact value display - reduce line height */
+    .power-grid-table tbody td > div,
+    .power-grid-table tbody td > span:not(:before) {
+        @apply leading-tight;
+        @apply text-sm;
+    }
+
+    /* Compact icon sizes in cells */
+    .power-grid-table tbody td svg {
+        @apply w-4;
+        @apply h-4;
+    }
+
+    /* Mobile Filter Button Styles - Icon only, matching Add/Export buttons */
+    .mobile-filter-toggle-btn {
+        display: flex !important;
+        visibility: visible !important;
+    }
+
+    /* Ensure button container is visible on mobile */
+    .mobile-filter-button-container {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Ensure filter button is visible in header on mobile */
+    header .mobile-filter-button-container,
+    .mobile-filter-button-container {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Enhanced filter container styling - professional design */
+    .pg-filter-container.mobile-inline-filters {
+        @apply mt-2;
+        animation: slideDown 0.2s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Filter item wrapper - clean design */
+    .filter-item-wrapper {
+        transition: all 0.2s ease;
+    }
+
+    .filter-item-wrapper:hover {
+        @apply transform;
+    }
+
+    /* Professional spacing for filter grid */
+    .pg-filter-container .space-y-3 > * + * {
+        margin-top: 0.75rem;
+    }
+
+    /* Hide PowerGrid's default labels in filter container (we use our own) */
+    .pg-filter-container .filter-item-wrapper label.block {
+        display: none !important;
+    }
+
+    /* Professional input styling in filter container - matching theme */
+    .pg-filter-container input,
+    .pg-filter-container select,
+    .pg-filter-container .flux-input,
+    .pg-filter-container .flux-select {
+        @apply rounded-lg;
+        @apply border;
+        @apply border-gray-300;
+        @apply dark:border-gray-600;
+        @apply bg-white;
+        @apply dark:bg-gray-800;
+        @apply text-gray-900;
+        @apply dark:text-gray-100;
+        @apply text-sm;
+        @apply py-1.5;
+        @apply px-3;
+        @apply h-9;
+        @apply focus:outline-none;
+        @apply focus:ring-2;
+        @apply focus:ring-blue-500;
+        @apply focus:ring-offset-1;
+        @apply focus:border-blue-500;
+        @apply transition-all;
+        @apply duration-200;
+        @apply shadow-sm;
+        min-height: 2.25rem;
+        line-height: 1.375rem;
+    }
+
+    /* Hover states for inputs */
+    .pg-filter-container input:hover:not(:focus),
+    .pg-filter-container select:hover:not(:focus) {
+        @apply border-gray-400;
+        @apply dark:border-gray-500;
+    }
+
+    /* Focus transitions for filter inputs */
+    .pg-filter-container input:focus,
+    .pg-filter-container select:focus {
+        @apply shadow-md;
+        @apply ring-blue-500;
+        @apply border-blue-500;
+    }
+
+    /* Custom label styling - professional with text wrapping and fixed width */
+    .pg-filter-container .filter-item-wrapper label {
+        @apply text-sm;
+        @apply font-semibold;
+        @apply text-gray-700;
+        @apply dark:text-gray-300;
+        @apply leading-5;
+        @apply break-words;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    /* Fixed width for labels on desktop to align all inputs */
+    @media (min-width: 640px) {
+        .pg-filter-container .filter-item-wrapper label {
+            width: 7rem; /* 112px - w-28 */
+            min-width: 7rem;
+            max-width: 7rem;
+        }
+    }
+
+    /* Ensure labels don't overflow on mobile */
+    .pg-filter-container .filter-item-wrapper label {
+        max-width: 100%;
+    }
+
+    /* Better label alignment for long text */
+    .pg-filter-container .filter-item-wrapper > div {
+        @apply items-start;
+    }
+
+    /* Ensure input container aligns properly with wrapped labels */
+    .pg-filter-container .filter-item-wrapper > div > div:last-child {
+        @apply flex-1;
+        @apply min-w-0;
+    }
+
+    /* Ensure all inputs start at the same position */
+    .pg-filter-container .filter-item-wrapper > div {
+        @apply flex;
+        @apply flex-col;
+    }
+
+    @media (min-width: 640px) {
+        .pg-filter-container .filter-item-wrapper > div {
+            @apply flex-row;
+            @apply items-start;
+        }
+
+        /* Fixed width container for consistent input alignment */
+        .pg-filter-container .filter-item-wrapper > div > div:last-child {
+            flex: 1 1 0%;
+            min-width: 0;
+            margin-left: 0.5rem; /* gap-2 */
+        }
+    }
+
+    /* Professional input sizing - compact */
+    .pg-filter-container input[type="text"],
+    .pg-filter-container input[type="number"],
+    .pg-filter-container input[type="date"],
+    .pg-filter-container input[type="datetime-local"],
+    .pg-filter-container select {
+        @apply text-sm;
+        @apply py-1.5;
+        @apply px-3;
+        @apply h-9;
+        min-height: 2.25rem;
+        line-height: 1.375rem;
+    }
+
+    /* Professional select dropdowns - compact */
+    .pg-filter-container select {
+        @apply text-sm;
+        @apply py-1.5;
+        @apply px-3;
+        @apply h-9;
+        @apply cursor-pointer;
+    }
+
+    /* Date picker inputs - compact */
+    .pg-filter-container input[type="date"],
+    .pg-filter-container input[type="datetime-local"] {
+        @apply text-sm;
+        @apply py-1.5;
+        @apply px-3;
+        @apply h-9;
+    }
+
+    /* Style Flux UI inputs in filter container - compact */
+    .pg-filter-container [data-flux-control] {
+        @apply text-sm;
+        @apply py-1.5;
+        @apply px-3;
+        @apply h-9;
+        min-height: 2.25rem;
+    }
+
+    /* Hide any duplicate labels from PowerGrid components */
+    .pg-filter-container label.block.text-sm,
+    .pg-filter-container label.block.text-pg-primary-700,
+    .pg-filter-container .filter-item-wrapper > div > div > label {
+        display: none !important;
+    }
+
+    /* Ensure inputs take full width in filter container */
+    .pg-filter-container .filter-item-wrapper input,
+    .pg-filter-container .filter-item-wrapper select {
+        @apply w-full;
+    }
+
+    /* Better styling for filter input containers */
+    .pg-filter-container .filter-item-wrapper > div > div {
+        @apply w-full;
+    }
+
+    /* Style PowerGrid filter input wrapper */
+    .pg-filter-container [class*="filterInputText"],
+    .pg-filter-container [class*="filterSelect"],
+    .pg-filter-container [class*="filterNumber"] {
+        @apply w-full;
+    }
+
+    /* Remove excessive spacing from PowerGrid filter components */
+    .pg-filter-container .space-y-1,
+    .pg-filter-container .space-y-2 {
+        @apply space-y-0;
+    }
+
+    /* Better visual separation for filter items */
+    .pg-filter-container .filter-item-wrapper:not(:last-child) {
+        @apply border-b;
+        @apply border-gray-100;
+        @apply dark:border-gray-700;
+        @apply pb-3;
+    }
+
+    .pg-filter-container .filter-item-wrapper:last-child {
+        @apply pb-0;
+    }
+}
+
+/* PowerGrid Header and Footer text sizes */
+#power-grid-table-base,
+#power-grid-table-container {
+    @apply text-sm;
+}
+
+/* Match footer padding on mobile - ensure datatable aligns with footer */
+@media (max-width: 768px) {
+    #power-grid-table-base,
+    #power-grid-table-container {
+        @apply px-2;
+    }
+
+    /* Ensure table rows align with footer - no extra margins */
+    .power-grid-table tbody {
+        @apply px-0;
+        @apply mx-0;
+    }
+
+    /* Ensure table itself has no extra padding */
+    .power-grid-table {
+        @apply mx-0;
+    }
+}
+
+/* Header elements */
+#power-grid-table-base .pg-actions,
+#power-grid-table-base button,
+#power-grid-table-base a {
+    @apply text-xs;
+}
+
+/* Filter inputs text size */
+.power-grid-table thead th input,
+.power-grid-table thead th select,
+.power-grid-table thead th .flux-input,
+.power-grid-table thead th .flux-select,
+.power-grid-table thead th .powergrid-column-search input {
+    @apply text-sm;
+}
+
+/* Footer text */
+.power-grid-table-footer,
+.pg-footer {
+    @apply text-xs;
+}
+
+/* Pagination text */
+.pg-pagination,
+.pg-pagination button,
+.pg-pagination a,
+.pg-pagination span {
+    @apply text-xs;
+}
+
+/* Search input */
+.pg-search input {
+    @apply text-sm;
+}
+
+/* Enabled filters */
+.pg-enabled-filters-base,
+.pg-enabled-filters-base * {
+    @apply text-xs;
+}
+
+/* All PowerGrid wrapper elements */
+.powergrid-table-wrapper,
+.powergrid-table-scroll-container {
+    @apply text-sm;
+}
+
+/* Action buttons in cells */
+.power-grid-table .pg-actions button,
+.power-grid-table .pg-actions a {
+    @apply text-xs;
+    @apply font-medium;
+}
+
+
+@media (max-width: 768px) {
+    .power-grid-table tbody td[data-column="actions"] {
+        text-align: center;
+        padding-top: calc(var(--spacing) * 1.5);
+        padding-bottom: calc(var(--spacing) * 1.5);
+        padding-inline: calc(var(--spacing) * 2);
+        border-top-style: var(--tw-border-style);
+        border-top-width: 0px;
+        border-color: var(--color-gray-200);
+        background-color: #f6f6f6 !important;
+    }
+}

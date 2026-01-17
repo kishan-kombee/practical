@@ -1,0 +1,19 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 5 # Highest level for strictest checks (you can also try 7 or 8 first)
+    treatPhpDocTypesAsCertain: false
+    paths:
+        - app
+        - routes
+        - database
+        - tests
+        - vendor
+        - database/seeders
+        - database/migrations
+
+    excludePaths:
+        - storage/*
+        - bootstrap/*
+        - vendor/*
